@@ -1,8 +1,15 @@
 import 'package:get/get.dart';
 
 class DashboardController extends GetxController {
+    var selectedIndex = 0.obs;
   //TODO: Implement DashboardController
+    void onTabTapped(int index){
+  
 
+    void onTabTapped(int index){
+      selectedIndex.value = 3;
+    }
+  }
   final count = 0.obs;
   @override
   void onInit() {

@@ -1,10 +1,7 @@
-import 'dart:ffi';
-
 import 'package:get/get.dart';
 
-class DashboardControllerController extends GetxController {
-
-  //TODO: Implement DashboardControllerController
+class SigninController extends GetxController {
+  //TODO: Implement SigninController
 
   final count = 0.obs;
   @override
@@ -23,5 +20,4 @@ class DashboardControllerController extends GetxController {
   }
 
   void increment() => count.value++;
-
 }

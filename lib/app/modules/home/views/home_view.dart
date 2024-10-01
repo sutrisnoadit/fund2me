@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fund2me1/app/routes/app_pages.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
 import 'package:get/get.dart';
 
 import '../controllers/home_controller.dart';
@@ -75,9 +75,7 @@ class Fund4MeScreen extends StatelessWidget {
               ),
               elevation: 5, 
             ),
-            onPressed: () {
-               
-            },
+            onPressed: () =>  Get.toNamed(Routes.SIGNIN),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
