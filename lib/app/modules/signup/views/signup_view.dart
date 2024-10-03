@@ -3,12 +3,12 @@ import 'package:flutter/gestures.dart';
 import 'package:fund2me1/app/routes/app_pages.dart'; 
 import 'package:get/get.dart';
 
-import '../controllers/signin_controller.dart';
+import '../controllers/signup_controller.dart';
 
-class SigninView extends GetView<SigninController> {
-  const SigninView({super.key});
-  
-  Widget build(BuildContext context) {
+class SignupView extends GetView<SignupController> {
+  const SignupView({super.key});
+  @override
+ Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xff692729), 
       body: Padding(
@@ -42,7 +42,7 @@ class SigninView extends GetView<SigninController> {
                 ),
                    SizedBox(height: 10),
                const Text(
-                'Sign in to your Account',
+                'Create your Account',
                 style: TextStyle(
                   color: Color(0xfff2cebe),
                   fontSize: 18.0,
@@ -75,9 +75,23 @@ class SigninView extends GetView<SigninController> {
                   contentPadding: EdgeInsets.symmetric(horizontal: 20),
                 ),
               ),
+              SizedBox(height: 20),
+              TextField(
+                obscureText: true,
+                decoration: InputDecoration(
+                  hintText: 'Confirm Password',
+                  filled: true,
+                  fillColor: Color(0xfff2cebe), 
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide.none,
+                  ),
+                  contentPadding: EdgeInsets.symmetric(horizontal: 20),
+                ),
+              ),
                SizedBox(height: 30),
               ElevatedButton(
-                onPressed: () => Get.toNamed(Routes.DASHBOARD),
+                onPressed: () => Get.toNamed(Routes.SIGNIN),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color(0xfff2cebe), 
                   padding: EdgeInsets.symmetric(horizontal: 100, vertical: 15),
@@ -86,7 +100,7 @@ class SigninView extends GetView<SigninController> {
                   ),
                 ),
                 child: const Text(
-                  'Sign in',
+                  'Sign Up',
                   style: TextStyle(color: Colors.black87),
                 ),
               ),
@@ -125,29 +139,12 @@ class SigninView extends GetView<SigninController> {
                 ],
               ),
               const SizedBox(height: 40),
-              RichText(
-                text: TextSpan(
-                  text: "Don't have an account? ",
-                  style: const TextStyle(color: Colors.white70),
-                  children: [
-                    TextSpan(
-                      text: 'Sign up',
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () {
-                          Get.toNamed(Routes.SIGNUP);
-                        },
-                    ),
-                  ],
-                ),
-              ),
+              
             ],
           ),
         ),
       ),
     );
   }
+
 }
