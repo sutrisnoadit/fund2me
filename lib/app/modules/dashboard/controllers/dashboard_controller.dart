@@ -7,20 +7,20 @@ class DashboardController extends GetxController {
     var selectedImagePath = ''.obs;
 
   void onTabTapped(int index){
-      selectedIndex.value = 3;
+      selectedIndex.value = index;
      
     }
     
-  void pickImage() async {
-    final ImagePicker picker = ImagePicker();
-    final XFile? image = await picker.pickImage(source: ImageSource.gallery);
+    // void pickImage() async {
+    //   final ImagePicker picker = ImagePicker();
+    //   final XFile? image = await picker.pickImage(source: ImageSource.camera);
 
-    if (image != null) {
-      selectedImagePath.value = image.path;
-    } else {
-      Get.snackbar("Error", "No image selected");
-    }
-  }
+    //   if (image != null) {
+    //     selectedImagePath.value = image.path;
+    //   } else {
+    //     Get.snackbar("Error", "No image selected");
+    //   }
+    // }
   final count = 0.obs;
   @override
   void onInit() {

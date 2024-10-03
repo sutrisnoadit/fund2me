@@ -65,6 +65,9 @@ flutter:
   assets:
     - assets/img/png/logo-no-background.png
     - assets/img/fund4me-high-resolution-logo (4)-fotor-2024093022467.png
+    - assets/img/gambar2.png
+    - assets/img/gambar1.png
+    - assets/img/hilma.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
