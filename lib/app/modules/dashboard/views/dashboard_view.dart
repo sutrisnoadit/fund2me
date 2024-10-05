@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/dashboard_controller.dart';
 
-
 class DashboardView extends StatelessWidget {
   final DashboardController controller = Get.put(DashboardController());
 
@@ -11,12 +10,12 @@ class DashboardView extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color(0xfff2cebe),
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(160.0), 
+        preferredSize: Size.fromHeight(160.0),
         child: Container(
           decoration: const BoxDecoration(
             color: Color(0xff692729),
             borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(40.0), 
+              bottomLeft: Radius.circular(40.0),
               bottomRight: Radius.circular(40.0),
             ),
           ),
@@ -27,7 +26,7 @@ class DashboardView extends StatelessWidget {
                 Row(
                   children: [
                     const CircleAvatar(
-                      backgroundImage: AssetImage('assets/img/hilma.png'), 
+                      backgroundImage: AssetImage('assets/img/hilma.png'),
                       radius: 25,
                     ),
                     SizedBox(width: 10),
@@ -35,12 +34,12 @@ class DashboardView extends StatelessWidget {
                       child: Container(
                         padding: EdgeInsets.symmetric(horizontal: 16.0),
                         decoration: BoxDecoration(
-                          color: Color(0xfff1e8dc), 
+                          color: Color(0xfff1e8dc),
                           borderRadius: BorderRadius.circular(30),
                         ),
                         child: const Row(
                           children: [
-                            Icon(Icons.menu, color: Color(0xff692729)), 
+                            Icon(Icons.menu, color: Color(0xff692729)),
                             SizedBox(width: 10),
                             Expanded(
                               child: TextField(
@@ -84,7 +83,7 @@ class DashboardView extends StatelessWidget {
                     ),
                     Icon(
                       Icons.wallet,
-                      color: Colors.white, 
+                      color: Colors.white,
                       size: 30,
                     ),
                   ],
@@ -94,7 +93,7 @@ class DashboardView extends StatelessWidget {
           ),
         ),
       ),
-      body: SingleChildScrollView( 
+      body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -112,7 +111,7 @@ class DashboardView extends StatelessWidget {
               ),
             ),
             SizedBox(height: 20),
-           const Padding(
+            const Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(
                 'Yuk, Mulai Bantu!',
@@ -147,10 +146,17 @@ class DashboardView extends StatelessWidget {
                 ],
               ),
             ),
+            SizedBox(height: 20),
+            _buildDailyChallengeCard(
+              'Tantangan Harian:',
+              'Bantu 10 Anak Mendapatkan Akses Pendidikan Hari Ini\nAyo, berkontribusi sekarang dan bantu anak-anak mendapatkan pendidikan yang layak. Setiap donasi kecil dapat membuat perbedaan besar!',
+              0.7, // Progress 70%
+            ),
+            SizedBox(height: 20),
           ],
         ),
       ),
-      bottomNavigationBar:  ClipRRect(
+      bottomNavigationBar: ClipRRect(
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(30.0),
           topRight: Radius.circular(30.0),
@@ -160,7 +166,7 @@ class DashboardView extends StatelessWidget {
           child: Obx(() {
             return BottomNavigationBar(
               currentIndex: controller.selectedIndex.value,
-              onTap: controller.onTabTapped,
+           
               selectedItemColor: Colors.white,
               unselectedItemColor: Colors.white54,
               items: const [
@@ -195,7 +201,7 @@ class DashboardView extends StatelessWidget {
         Container(
           padding: EdgeInsets.all(10),
           decoration: BoxDecoration(
-            color: Color(0xfff1e8dc), 
+            color: Color(0xfff1e8dc),
             borderRadius: BorderRadius.circular(15),
           ),
           child: Icon(icon, size: 30, color: Color(0xff692729)),
@@ -210,58 +216,136 @@ class DashboardView extends StatelessWidget {
   }
 
   Widget _buildHelpCard(String title, String description, String imagePath) {
-  return Container(
-    width: 190, 
-    margin: EdgeInsets.only(right: 10),
-    decoration: BoxDecoration(
-      color: Color(0xfff1e8dc), 
-      borderRadius: BorderRadius.circular(15),
-      border: Border.all(
-        color: Colors.grey.shade300, 
-        width: 2,
-      ),
-    ),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        ClipRRect(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(15), 
-            topRight: Radius.circular(15),
-          ),
-          child: Image.asset(
-            imagePath,
-            height: 120,
-            width: double.infinity,
-            fit: BoxFit.cover,
-          ),
+    return Container(
+      width: 190,
+      margin: EdgeInsets.only(right: 10),
+      decoration: BoxDecoration(
+        color: Color(0xfff1e8dc),
+        borderRadius: BorderRadius.circular(15),
+        border: Border.all(
+          color: Colors.grey.shade300,
+          width: 2,
         ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(15),
+              topRight: Radius.circular(15),
+            ),
+            child: Image.asset(
+              imagePath,
+              height: 120,
+              width: double.infinity,
+              fit: BoxFit.cover,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xff692729),
+                  ),
+                ),
+                SizedBox(height: 5),
+                Text(
+                  description,
+                  style: TextStyle(fontSize: 12, color: Colors.black87),
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 2,
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildDailyChallengeCard(String title, String description, double progress) {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 16.0),
+      padding: EdgeInsets.all(12.0),
+      decoration: BoxDecoration(
+        color: Color(0xfff1e8dc),
+        borderRadius: BorderRadius.circular(15),
+        border: Border.all(color: Colors.grey.shade300, width: 2),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
             children: [
-              Text(
-                title,
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xff692729),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.asset(
+                  'assets/img/gambar2.png',
+                  height: 60,
+                  width: 60,
+                  fit: BoxFit.cover,
                 ),
               ),
-              SizedBox(height: 5),
-              Text(
-                description,
-                style: TextStyle(fontSize: 12, color: Colors.black87),
-                overflow: TextOverflow.ellipsis,
-                maxLines: 2,
+              SizedBox(width: 10),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xff692729),
+                      ),
+                    ),
+                    SizedBox(height: 5),
+                    Text(
+                      description,
+                      style: TextStyle(fontSize: 12, color: Colors.black87),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
-        ),
-      ],
-    ),
-  );
-}
-
+          SizedBox(height: 10),
+          Container(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Text(
+                      "Tercapai: ${(progress * 100).toInt()}% - 100%",
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black87,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 5),
+                LinearProgressIndicator(
+                  value: progress,
+                  backgroundColor: Colors.grey.shade300,
+                  color: Color(0xff692729),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }
