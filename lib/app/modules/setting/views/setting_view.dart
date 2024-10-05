@@ -63,8 +63,7 @@ class SettingView extends GetView<SettingController> {
             children: [
               const CircleAvatar(
                 radius: 100,
-                backgroundImage: NetworkImage(
-                    'https://example.com/profile-picture.jpg'), // Replace with actual image URL
+                backgroundImage: AssetImage("assets/img/hilma.png"), // Replace with actual image URL
               ),
               Positioned(
                 bottom: 0,
