@@ -75,7 +75,7 @@ class Fund4MeScreen extends StatelessWidget {
               ),
               elevation: 5, 
             ),
-            onPressed: () =>  Get.toNamed(Routes.SIGNIN),
+            onPressed: () =>  Get.offAndToNamed(Routes.SIGNIN),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [

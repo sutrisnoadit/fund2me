@@ -11,6 +11,12 @@ class DashboardController extends GetxController {
      
     }
     
+  // var pageController = DashboardController();
+
+  // void onPageChanged(int index) {
+  //   selectedIndex.value = index;
+  // }
+    
     // void pickImage() async {
     //   final ImagePicker picker = ImagePicker();
     //   final XFile? image = await picker.pickImage(source: ImageSource.camera);

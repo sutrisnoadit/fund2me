@@ -77,7 +77,7 @@ class SigninView extends GetView<SigninController> {
               ),
                SizedBox(height: 30),
               ElevatedButton(
-                onPressed: () => Get.toNamed(Routes.DASHBOARD),
+                onPressed: () => Get.offAndToNamed(Routes.DASHBOARD),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color(0xfff2cebe), 
                   padding: EdgeInsets.symmetric(horizontal: 100, vertical: 15),

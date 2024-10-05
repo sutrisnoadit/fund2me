@@ -93,69 +93,7 @@ class DashboardView extends StatelessWidget {
           ),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  _buildCategoryIcon('Sosial', Icons.people),
-                  _buildCategoryIcon('Bencana', Icons.warning),
-                  _buildCategoryIcon('Pendidikan', Icons.book),
-                  _buildCategoryIcon('Kesehatan', Icons.favorite),
-                ],
-              ),
-            ),
-            SizedBox(height: 20),
-            const Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Text(
-                'Yuk, Mulai Bantu!',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xff692729),
-                ),
-              ),
-            ),
-            SizedBox(height: 10),
-            SizedBox(
-              height: 250,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: [
-                  _buildHelpCard(
-                    'Mitra Bantu',
-                    'Rani, seorang anak perempuan berusia 6 tahun didiagnosis menderita stunting...',
-                    'assets/img/gambar1.png',
-                  ),
-                  _buildHelpCard(
-                    'Mitra Bantu',
-                    'Sekolah Desa Harapan, satu-satunya berada dalam kondisi yang memprihatinkan...',
-                    'assets/img/gambar2.png',
-                  ),
-                  _buildHelpCard(
-                    'Mitra Bantu 2',
-                    'Sekolah Desa Harapan, satu-satunya berada dalam kondisi yang memprihatinkan...',
-                    'assets/img/gambar2.png',
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(height: 20),
-            _buildDailyChallengeCard(
-              'Tantangan Harian:',
-              'Bantu 10 Anak Mendapatkan Akses Pendidikan Hari Ini\nAyo, berkontribusi sekarang dan bantu anak-anak mendapatkan pendidikan yang layak. Setiap donasi kecil dapat membuat perbedaan besar!',
-              0.7, // Progress 70%
-            ),
-            SizedBox(height: 20),
-          ],
-        ),
-      ),
+      body: _buildBody(), 
       bottomNavigationBar: ClipRRect(
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(30.0),
@@ -166,7 +104,9 @@ class DashboardView extends StatelessWidget {
           child: Obx(() {
             return BottomNavigationBar(
               currentIndex: controller.selectedIndex.value,
-           
+              onTap: (index) {
+                _onItemTapped(index);
+              },
               selectedItemColor: Colors.white,
               unselectedItemColor: Colors.white54,
               items: const [
@@ -192,6 +132,127 @@ class DashboardView extends StatelessWidget {
           }),
         ),
       ),
+    );
+  }
+
+  void _onItemTapped(int index) {
+    controller.selectedIndex.value = index;
+    switch (index) {
+      case 0:
+        Get.toNamed('/'); 
+        break;
+      case 1:
+        Get.toNamed('/favorite');
+        break;
+      case 2:
+        Get.toNamed('/location'); 
+        break;
+      case 3:
+        Get.toNamed('/settings'); 
+        break;
+    }
+  }
+
+
+  Widget _buildBody() {
+    return Obx(() {
+      switch (controller.selectedIndex.value) {
+        case 0:
+          return _buildHomeContent();
+        case 1:
+          return _buildFavoriteContent();
+        case 2:
+          return _buildLocationContent();
+        case 3:
+          return _buildSettingsContent();
+        default:
+          return _buildHomeContent();
+      }
+    });
+  }
+
+  Widget _buildHomeContent() {
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Your Home content here
+          SizedBox(height: 20),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                _buildCategoryIcon('Sosial', Icons.people),
+                _buildCategoryIcon('Bencana', Icons.warning),
+                _buildCategoryIcon('Pendidikan', Icons.book),
+                _buildCategoryIcon('Kesehatan', Icons.favorite),
+              ],
+            ),
+          ),
+          SizedBox(height: 20),
+          const Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Text(
+              'Yuk, Mulai Bantu!',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Color(0xff692729),
+              ),
+            ),
+          ),
+          SizedBox(height: 10),
+          SizedBox(
+            height: 250,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: [
+                _buildHelpCard(
+                  'Mitra Bantu',
+                  'Rani, seorang anak perempuan berusia 6 tahun didiagnosis menderita stunting...',
+                  'assets/img/gambar1.png',
+                ),
+                _buildHelpCard(
+                  'Mitra Bantu',
+                  'Sekolah Desa Harapan, satu-satunya berada dalam kondisi yang memprihatinkan...',
+                  'assets/img/gambar2.png',
+                ),
+                _buildHelpCard(
+                  'Mitra Bantu 2',
+                  'Sekolah Desa Harapan, satu-satunya berada dalam kondisi yang memprihatinkan...',
+                  'assets/img/gambar2.png',
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 20),
+          _buildDailyChallengeCard(
+            'Tantangan Harian:',
+            'Bantu 10 Anak Mendapatkan Akses Pendidikan Hari Ini\nAyo, berkontribusi sekarang dan bantu anak-anak mendapatkan pendidikan yang layak. Setiap donasi kecil dapat membuat perbedaan besar!',
+            0.7, // Progress 70%
+          ),
+          SizedBox(height: 20),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildFavoriteContent() {
+    return Center(
+      child: Text('Profile'),
+    );
+  }
+
+  Widget _buildLocationContent() {
+    return Center(
+      child: Text('Location'),
+    );
+  }
+
+  Widget _buildSettingsContent() {
+    return Center(
+      child: Text('Settings'),
     );
   }
 

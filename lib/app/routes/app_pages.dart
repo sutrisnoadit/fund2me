@@ -4,6 +4,8 @@ import '../modules/dashboard/bindings/dashboard_binding.dart';
 import '../modules/dashboard/views/dashboard_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/location/bindings/location_binding.dart';
+import '../modules/location/views/location_view.dart';
 import '../modules/setting/bindings/setting_binding.dart';
 import '../modules/setting/views/setting_view.dart';
 import '../modules/signin/bindings/signin_binding.dart';
@@ -43,6 +45,11 @@ class AppPages {
       name: _Paths.SIGNUP,
       page: () => const SignupView(),
       binding: SignupBinding(),
+    ),
+    GetPage(
+      name: _Paths.LOCATION,
+      page: () =>  LocationView(),
+      binding: LocationBinding(),
     ),
   ];
 }
