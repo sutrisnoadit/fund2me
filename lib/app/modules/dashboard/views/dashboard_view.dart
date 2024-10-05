@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/dashboard_controller.dart';
+import 'package:fund2me1/app/routes/app_pages.dart';
+import '../../setting/views/setting_view.dart';
 
 class DashboardView extends StatelessWidget {
   final DashboardController controller = Get.put(DashboardController());
@@ -9,91 +11,100 @@ class DashboardView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xfff2cebe),
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(160.0),
-        child: Container(
-          decoration: const BoxDecoration(
-            color: Color(0xff692729),
-            borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(40.0),
-              bottomRight: Radius.circular(40.0),
-            ),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.only(top: 40.0, left: 16.0, right: 16.0),
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    const CircleAvatar(
-                      backgroundImage: AssetImage('assets/img/hilma.png'),
-                      radius: 25,
-                    ),
-                    SizedBox(width: 10),
-                    Expanded(
-                      child: Container(
-                        padding: EdgeInsets.symmetric(horizontal: 16.0),
-                        decoration: BoxDecoration(
-                          color: Color(0xfff1e8dc),
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        child: const Row(
-                          children: [
-                            Icon(Icons.menu, color: Color(0xff692729)),
-                            SizedBox(width: 10),
-                            Expanded(
-                              child: TextField(
-                                decoration: InputDecoration(
-                                  hintText: 'Hinted search text',
-                                  hintStyle: TextStyle(color: Colors.black54),
-                                  border: InputBorder.none,
-                                ),
+      body: Stack(
+        children: [
+          Positioned(
+            top: 0, 
+            left: 0,
+            right: 0,
+            child: PreferredSize(
+              preferredSize: Size.fromHeight(160.0),
+              child: Container(
+                decoration: const BoxDecoration(
+                  color: Color(0xff692729),
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(40.0),
+                    bottomRight: Radius.circular(40.0),
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 40.0, left: 16.0, right: 16.0),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          const CircleAvatar(
+                            backgroundImage: AssetImage('assets/img/hilma.png'),
+                            radius: 25,
+                          ),
+                          SizedBox(width: 10),
+                          Expanded(
+                            child: Container(
+                              padding: EdgeInsets.symmetric(horizontal: 16.0),
+                              decoration: BoxDecoration(
+                                color: Color(0xfff1e8dc),
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              child: const Row(
+                                children: [
+                                  Icon(Icons.menu, color: Color(0xff692729)),
+                                  SizedBox(width: 10),
+                                  Expanded(
+                                    child: TextField(
+                                      decoration: InputDecoration(
+                                        hintText: 'Hinted search text',
+                                        hintStyle: TextStyle(color: Colors.black54),
+                                        border: InputBorder.none,
+                                      ),
+                                    ),
+                                  ),
+                                  Icon(Icons.search, color: Color(0xff692729)),
+                                ],
                               ),
                             ),
-                            Icon(Icons.search, color: Color(0xff692729)),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 20),
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Hai, Friends',
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
+                      SizedBox(height: 20),
+                      const Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Hai, Friends',
+                                style: TextStyle(
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              Text(
+                                'Let’s help those who needs!',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.white70,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Icon(
+                            Icons.wallet,
                             color: Colors.white,
+                            size: 30,
                           ),
-                        ),
-                        Text(
-                          'Let’s help those who needs!',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.white70,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Icon(
-                      Icons.wallet,
-                      color: Colors.white,
-                      size: 30,
-                    ),
-                  ],
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              ],
+              ),
             ),
           ),
-        ),
+          Positioned(child:  _buildBody())
+        ],
       ),
-      body: _buildBody(), 
       bottomNavigationBar: ClipRRect(
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(30.0),
@@ -148,11 +159,10 @@ class DashboardView extends StatelessWidget {
         Get.toNamed('/location'); 
         break;
       case 3:
-        Get.toNamed('/settings'); 
+        Get.toNamed('/settings'); // Settings routing untuk konsistensi
         break;
     }
   }
-
 
   Widget _buildBody() {
     return Obx(() {
@@ -176,8 +186,7 @@ class DashboardView extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Your Home content here
-          SizedBox(height: 20),
+          SizedBox(height: 180), // Agar tidak menutupi AppBar
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Row(
@@ -252,7 +261,7 @@ class DashboardView extends StatelessWidget {
 
   Widget _buildSettingsContent() {
     return Center(
-      child: Text('Settings'),
+      child: SettingView(),
     );
   }
 
@@ -319,9 +328,12 @@ class DashboardView extends StatelessWidget {
                 SizedBox(height: 5),
                 Text(
                   description,
-                  style: TextStyle(fontSize: 12, color: Colors.black87),
-                  overflow: TextOverflow.ellipsis,
                   maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: Colors.black87,
+                  ),
                 ),
               ],
             ),
@@ -332,80 +344,43 @@ class DashboardView extends StatelessWidget {
   }
 
   Widget _buildDailyChallengeCard(String title, String description, double progress) {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 16.0),
-      padding: EdgeInsets.all(12.0),
-      decoration: BoxDecoration(
-        color: Color(0xfff1e8dc),
-        borderRadius: BorderRadius.circular(15),
-        border: Border.all(color: Colors.grey.shade300, width: 2),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Color(0xfff1e8dc),
+          borderRadius: BorderRadius.circular(15),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Image.asset(
-                  'assets/img/gambar2.png',
-                  height: 60,
-                  width: 60,
-                  fit: BoxFit.cover,
+              Text(
+                title,
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xff692729),
                 ),
               ),
-              SizedBox(width: 10),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      title,
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xff692729),
-                      ),
-                    ),
-                    SizedBox(height: 5),
-                    Text(
-                      description,
-                      style: TextStyle(fontSize: 12, color: Colors.black87),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ],
+              SizedBox(height: 10),
+              Text(
+                description,
+                style: TextStyle(
+                  fontSize: 14,
+                  color: Colors.black87,
                 ),
+              ),
+              SizedBox(height: 10),
+              LinearProgressIndicator(
+                value: progress,
+                backgroundColor: Colors.grey.shade300,
+                valueColor: AlwaysStoppedAnimation<Color>(Color(0xff692729)),
               ),
             ],
           ),
-          SizedBox(height: 10),
-          Container(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Text(
-                      "Tercapai: ${(progress * 100).toInt()}% - 100%",
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black87,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 5),
-                LinearProgressIndicator(
-                  value: progress,
-                  backgroundColor: Colors.grey.shade300,
-                  color: Color(0xff692729),
-                ),
-              ],
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
