@@ -4,14 +4,16 @@ import '../modules/dashboard/bindings/dashboard_binding.dart';
 import '../modules/dashboard/views/dashboard_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
-import '../modules/location/bindings/location_binding.dart';
-import '../modules/location/views/location_view.dart';
+import '../modules/news/bindings/news_binding.dart';
+import '../modules/news/views/news_view.dart';
+import '../modules/news/views/web_detail_news_view.dart';
 import '../modules/setting/bindings/setting_binding.dart';
 import '../modules/setting/views/setting_view.dart';
 import '../modules/signin/bindings/signin_binding.dart';
 import '../modules/signin/views/signin_view.dart';
 import '../modules/signup/bindings/signup_binding.dart';
 import '../modules/signup/views/signup_view.dart';
+
 
 part 'app_routes.dart';
 
@@ -47,9 +49,15 @@ class AppPages {
       binding: SignupBinding(),
     ),
     GetPage(
-      name: _Paths.LOCATION,
-      page: () =>  LocationView(),
-      binding: LocationBinding(),
+      name: _Paths.NEWS,
+      page: () => const NewsView(),
+      binding: NewsBinding(),
     ),
+    GetPage(
+      name: _Paths.NEWSDETAIL,
+      page: () => WebDetailNewsView(argNewsData1: Get.arguments),
+      binding: NewsBinding(),
+    ),
+    
   ];
 }

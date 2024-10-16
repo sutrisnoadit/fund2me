@@ -131,8 +131,8 @@ class DashboardView extends StatelessWidget {
                   label: 'Favorite',
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.location_on),
-                  label: 'Location',
+                  icon: Icon(Icons.newspaper),
+                  label: 'News',
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(Icons.settings),
@@ -153,13 +153,13 @@ class DashboardView extends StatelessWidget {
         Get.toNamed('/'); 
         break;
       case 1:
-        Get.toNamed('/favorite');
+        // Get.toNamed('/favorite');
         break;
       case 2:
-        Get.toNamed('/location'); 
+        Get.toNamed(Routes.NEWS); 
         break;
       case 3:
-        Get.toNamed('/settings'); // Settings routing untuk konsistensi
+        // Get.toNamed('/settings'); // Settings routing untuk konsistensi
         break;
     }
   }
