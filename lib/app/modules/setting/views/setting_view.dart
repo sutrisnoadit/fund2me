@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 
 import '../controllers/setting_controller.dart';
+import 'package:fund2me1/app/modules/my_address/controllers/my_address_controller.dart'; // Import controller MyAddress
+import 'package:fund2me1/app/modules/my_address/views/my_address_view.dart'; // Import halaman MyAddressView
 
 class SettingView extends GetView<SettingController> {
   const SettingView({super.key});
+
   @override
-   Widget build(BuildContext context) {
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(),
       body: buildBody(),
@@ -63,7 +65,8 @@ class SettingView extends GetView<SettingController> {
             children: [
               const CircleAvatar(
                 radius: 100,
-                backgroundImage: AssetImage("assets/img/hilma.png"), // Replace with actual image URL
+                backgroundImage: AssetImage(
+                    "assets/img/hilma.png"), // Replace with actual image URL
               ),
               Positioned(
                 bottom: 0,
@@ -113,7 +116,7 @@ class SettingView extends GetView<SettingController> {
             icon: Icons.person,
             title: 'My Profile',
             onTap: () {
-              // print("asdasasd");
+              // Navigate to My Profile screen
             },
           ),
           const Divider(),
@@ -129,7 +132,10 @@ class SettingView extends GetView<SettingController> {
             icon: Icons.location_on,
             title: 'My Address',
             onTap: () {
-              // Navigate to My Address screen
+              // Inisialisasi MyAddressController
+              Get.lazyPut(() => MyAddressController());
+              // Navigasi ke halaman MyAddressView
+              Get.to(() => const MyAddressView());
             },
           ),
         ],
@@ -149,4 +155,4 @@ class SettingView extends GetView<SettingController> {
       onTap: onTap,
     );
   }
-  }
+}

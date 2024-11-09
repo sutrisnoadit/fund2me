@@ -14,7 +14,7 @@ class DashboardView extends StatelessWidget {
       body: Stack(
         children: [
           Positioned(
-            top: 0, 
+            top: 0,
             left: 0,
             right: 0,
             child: PreferredSize(
@@ -28,7 +28,8 @@ class DashboardView extends StatelessWidget {
                   ),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 40.0, left: 16.0, right: 16.0),
+                  padding:
+                      const EdgeInsets.only(top: 40.0, left: 16.0, right: 16.0),
                   child: Column(
                     children: [
                       Row(
@@ -53,7 +54,8 @@ class DashboardView extends StatelessWidget {
                                     child: TextField(
                                       decoration: InputDecoration(
                                         hintText: 'Hinted search text',
-                                        hintStyle: TextStyle(color: Colors.black54),
+                                        hintStyle:
+                                            TextStyle(color: Colors.black54),
                                         border: InputBorder.none,
                                       ),
                                     ),
@@ -102,7 +104,7 @@ class DashboardView extends StatelessWidget {
               ),
             ),
           ),
-          Positioned(child:  _buildBody())
+          Positioned(child: _buildBody())
         ],
       ),
       bottomNavigationBar: ClipRRect(
@@ -150,13 +152,12 @@ class DashboardView extends StatelessWidget {
     controller.selectedIndex.value = index;
     switch (index) {
       case 0:
-        Get.toNamed('/'); 
         break;
       case 1:
         // Get.toNamed('/favorite');
         break;
       case 2:
-        Get.toNamed(Routes.NEWS); 
+        Get.toNamed(Routes.NEWS);
         break;
       case 3:
         // Get.toNamed('/settings'); // Settings routing untuk konsistensi
@@ -343,7 +344,8 @@ class DashboardView extends StatelessWidget {
     );
   }
 
-  Widget _buildDailyChallengeCard(String title, String description, double progress) {
+  Widget _buildDailyChallengeCard(
+      String title, String description, double progress) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Container(

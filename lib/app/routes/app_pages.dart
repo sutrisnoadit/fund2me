@@ -2,8 +2,12 @@ import 'package:get/get.dart';
 
 import '../modules/dashboard/bindings/dashboard_binding.dart';
 import '../modules/dashboard/views/dashboard_view.dart';
+import '../modules/donation/bindings/donation_binding.dart';
+import '../modules/donation/views/donation_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/my_address/bindings/my_address_binding.dart';
+import '../modules/my_address/views/my_address_view.dart';
 import '../modules/news/bindings/news_binding.dart';
 import '../modules/news/views/news_view.dart';
 import '../modules/news/views/web_detail_news_view.dart';
@@ -13,7 +17,6 @@ import '../modules/signin/bindings/signin_binding.dart';
 import '../modules/signin/views/signin_view.dart';
 import '../modules/signup/bindings/signup_binding.dart';
 import '../modules/signup/views/signup_view.dart';
-
 
 part 'app_routes.dart';
 
@@ -58,6 +61,15 @@ class AppPages {
       page: () => WebDetailNewsView(argNewsData1: Get.arguments),
       binding: NewsBinding(),
     ),
-    
+    GetPage(
+      name: _Paths.DONATION,
+      page: () => DonationView(),
+      binding: DonationBinding(),
+    ),
+    GetPage(
+      name: _Paths.MY_ADDRESS,
+      page: () => const MyAddressView(),
+      binding: MyAddressBinding(),
+    ),
   ];
 }

@@ -1,47 +1,47 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
-import 'package:fund2me1/app/routes/app_pages.dart'; 
+import 'package:fund2me1/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 
 import '../controllers/signin_controller.dart';
 
 class SigninView extends GetView<SigninController> {
   const SigninView({super.key});
-  
+
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff692729), 
+      backgroundColor: Color(0xff692729),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [          
-               SizedBox(height: 10),
-             const Text.rich(
-                  TextSpan(
-                    children: [
-                      TextSpan(
-                        text: 'Fund',
-                        style: TextStyle(
-                          fontSize: 40,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xfff2cebe), 
-                        ),
+            children: [
+              SizedBox(height: 10),
+              const Text.rich(
+                TextSpan(
+                  children: [
+                    TextSpan(
+                      text: 'Fund',
+                      style: TextStyle(
+                        fontSize: 40,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xfff2cebe),
                       ),
-                      TextSpan(
-                        text: '2Me', 
-                        style: TextStyle(
-                          fontSize: 40,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xffeae4d6),
-                        ),
+                    ),
+                    TextSpan(
+                      text: '2Me',
+                      style: TextStyle(
+                        fontSize: 40,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xffeae4d6),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-                   SizedBox(height: 10),
-               const Text(
+              ),
+              SizedBox(height: 10),
+              const Text(
                 'Sign in to your Account',
                 style: TextStyle(
                   color: Color(0xfff2cebe),
@@ -50,10 +50,11 @@ class SigninView extends GetView<SigninController> {
               ),
               const SizedBox(height: 40),
               TextField(
+                onChanged: controller.setEmail,
                 decoration: InputDecoration(
                   hintText: 'Email',
                   filled: true,
-                  fillColor: Color(0xfff2cebe), 
+                  fillColor: Color(0xfff2cebe),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                     borderSide: BorderSide.none,
@@ -61,13 +62,14 @@ class SigninView extends GetView<SigninController> {
                   contentPadding: EdgeInsets.symmetric(horizontal: 20),
                 ),
               ),
-               SizedBox(height: 20),
+              SizedBox(height: 20),
               TextField(
+                onChanged: controller.setPassword,
                 obscureText: true,
                 decoration: InputDecoration(
                   hintText: 'Password',
                   filled: true,
-                  fillColor: Color(0xfff2cebe), 
+                  fillColor: Color(0xfff2cebe),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                     borderSide: BorderSide.none,
@@ -75,11 +77,14 @@ class SigninView extends GetView<SigninController> {
                   contentPadding: EdgeInsets.symmetric(horizontal: 20),
                 ),
               ),
-               SizedBox(height: 30),
+              SizedBox(height: 30),
               ElevatedButton(
-                onPressed: () => Get.offAndToNamed(Routes.DASHBOARD),
+                onPressed: () {
+                  //=> Get.offAndToNamed(Routes.DASHBOARD)
+                  controller.signin();
+                },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xfff2cebe), 
+                  backgroundColor: Color(0xfff2cebe),
                   padding: EdgeInsets.symmetric(horizontal: 100, vertical: 15),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
@@ -90,7 +95,7 @@ class SigninView extends GetView<SigninController> {
                   style: TextStyle(color: Colors.black87),
                 ),
               ),
-               SizedBox(height: 20),
+              SizedBox(height: 20),
               const Text(
                 '_ or Sign in with _',
                 style: TextStyle(
@@ -111,7 +116,7 @@ class SigninView extends GetView<SigninController> {
                   const SizedBox(width: 20),
                   IconButton(
                     onPressed: () {},
-                    icon: const Icon(Icons.g_mobiledata_rounded), 
+                    icon: const Icon(Icons.g_mobiledata_rounded),
                     color: Colors.white,
                     iconSize: 40,
                   ),

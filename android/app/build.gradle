@@ -1,10 +1,16 @@
+
 plugins {
     id "com.android.application"
+    // START: FlutterFire Configuration
+    id 'com.google.gms.google-services'
+    // END: FlutterFire Configuration
     id "kotlin-android"
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id "dev.flutter.flutter-gradle-plugin"
 }
-
+apply plugin: 'com.android.application'
+// Tambahkan baris di bawah ini untuk menerapkan plugin Google Services.
+// apply plugin: 'com.google.gms.google-services'
 android {
     namespace = "com.example.fund2me1"
     compileSdk = flutter.compileSdkVersion
@@ -36,6 +42,7 @@ android {
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig = signingConfigs.debug
         }
+        
     }
 }
 

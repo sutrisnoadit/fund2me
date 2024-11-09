@@ -11,6 +11,8 @@ abstract class Routes {
   static const LOCATION = _Paths.LOCATION;
   static const NEWS = _Paths.NEWS;
   static const NEWSDETAIL = _Paths.NEWSDETAIL;
+  static const DONATION = _Paths.DONATION;
+  static const MY_ADDRESS = _Paths.MY_ADDRESS;
 }
 
 abstract class _Paths {
@@ -22,5 +24,7 @@ abstract class _Paths {
   static const SIGNUP = '/signup';
   static const LOCATION = '/location';
   static const NEWS = '/news';
-  static const NEWSDETAIL ='/newsdetail';
+  static const NEWSDETAIL = '/newsdetail';
+  static const DONATION = '/donation';
+  static const MY_ADDRESS = '/my-address';
 }

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "872555342647",
+    "project_id": "fund2me-21bb8",
+    "storage_bucket": "fund2me-21bb8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:872555342647:android:cadd461586d336b95408b2",
+        "android_client_info": {
+          "package_name": "com.example.fund2me"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSgBScUSzgySZ4eLCkFxjf6_ZGIgXMOfY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:872555342647:android:2f4158aeb09406a05408b2",
+        "android_client_info": {
+          "package_name": "com.example.fund2me1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSgBScUSzgySZ4eLCkFxjf6_ZGIgXMOfY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
