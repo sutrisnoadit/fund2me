@@ -6,6 +6,14 @@ import '../modules/donation/bindings/donation_binding.dart';
 import '../modules/donation/views/donation_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/kamera/bindings/kamera_binding.dart';
+import '../modules/kamera/views/kamera_view.dart';
+import '../modules/maps/bindings/maps_binding.dart';
+import '../modules/maps/views/maps_view.dart';
+import '../modules/microphone/bindings/microphone_binding.dart';
+import '../modules/microphone/views/microphone_view.dart';
+import '../modules/modul4/bindings/modul4_binding.dart';
+import '../modules/modul4/views/modul4_view.dart';
 import '../modules/my_address/bindings/my_address_binding.dart';
 import '../modules/my_address/views/my_address_view.dart';
 import '../modules/news/bindings/news_binding.dart';
@@ -70,6 +78,26 @@ class AppPages {
       name: _Paths.MY_ADDRESS,
       page: () => const MyAddressView(),
       binding: MyAddressBinding(),
+    ),
+    GetPage(
+      name: _Paths.MODUL4,
+      page: () => const Modul4View(),
+      binding: Modul4Binding(),
+    ),
+    GetPage(
+      name: _Paths.KAMERA,
+      page: () => const KameraView(),
+      binding: KameraBinding(),
+    ),
+    GetPage(
+      name: _Paths.MICROPHONE,
+      page: () => const MicrophoneView(),
+      binding: MicrophoneBinding(),
+    ),
+    GetPage(
+      name: _Paths.MAPS,
+      page: () => const MapsView(),
+      binding: MapsBinding(),
     ),
   ];
 }

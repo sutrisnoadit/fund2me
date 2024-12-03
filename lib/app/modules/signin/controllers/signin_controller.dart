@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class SigninController extends GetxController {
-  //TODO: Implement SigninController
+ 
   var email = ''.obs;
   var password = ''.obs;
   final count = 0.obs;

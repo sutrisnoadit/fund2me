@@ -13,6 +13,10 @@ abstract class Routes {
   static const NEWSDETAIL = _Paths.NEWSDETAIL;
   static const DONATION = _Paths.DONATION;
   static const MY_ADDRESS = _Paths.MY_ADDRESS;
+  static const MODUL4 = _Paths.MODUL4;
+  static const KAMERA = _Paths.KAMERA;
+  static const MICROPHONE = _Paths.MICROPHONE;
+  static const MAPS = _Paths.MAPS;
 }
 
 abstract class _Paths {
@@ -27,4 +31,8 @@ abstract class _Paths {
   static const NEWSDETAIL = '/newsdetail';
   static const DONATION = '/donation';
   static const MY_ADDRESS = '/my-address';
+  static const MODUL4 = '/modul4';
+  static const KAMERA = '/kamera';
+  static const MICROPHONE = '/microphone';
+  static const MAPS = '/maps';
 }

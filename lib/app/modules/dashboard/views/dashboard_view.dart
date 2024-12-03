@@ -140,6 +140,11 @@ class DashboardView extends StatelessWidget {
                   icon: Icon(Icons.settings),
                   label: 'Settings',
                 ),
+                  BottomNavigationBarItem(
+                  icon: Icon(Icons.info_outline),
+                  label: 'Mbuh',
+                ),
+                
               ],
             );
           }),
@@ -161,6 +166,9 @@ class DashboardView extends StatelessWidget {
         break;
       case 3:
         // Get.toNamed('/settings'); // Settings routing untuk konsistensi
+        break;
+      case 4:
+          Get.toNamed(Routes.MODUL4);
         break;
     }
   }

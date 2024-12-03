@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:audioplayers/audioplayers.dart'; // Paket untuk pemutar audio
+import 'package:fund2me1/app/modules/maps/controllers/maps_controller.dart';
+import 'package:fund2me1/app/modules/maps/views/maps_view.dart';
 
 import '../controllers/setting_controller.dart';
 import 'package:fund2me1/app/modules/my_address/controllers/my_address_controller.dart'; // Import controller MyAddress
@@ -11,12 +14,12 @@ class SettingView extends GetView<SettingController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(),
+      appBar: buildAppBar(context),
       body: buildBody(),
     );
   }
 
-  AppBar buildAppBar() {
+  AppBar buildAppBar(BuildContext context) {
     return AppBar(
       title: const Text(
         'Profile',
@@ -34,9 +37,9 @@ class SettingView extends GetView<SettingController> {
       ),
       actions: [
         IconButton(
-          icon: const Icon(Icons.wallet, color: Colors.white),
+          icon: const Icon(Icons.music_note, color: Colors.white),
           onPressed: () {
-            // Handle wallet button press
+            _showMusicDialog(context); // Dialog untuk input URL musik
           },
         ),
       ],
@@ -138,6 +141,17 @@ class SettingView extends GetView<SettingController> {
               Get.to(() => const MyAddressView());
             },
           ),
+          const Divider(),
+          buildListTile(
+            icon: Icons.map_sharp,
+            title: 'Maps',
+            onTap: () {
+              // Inisialisasi MyAddressController
+              Get.lazyPut(() => MapsController());
+              // Navigasi ke halaman MyAddressView
+              Get.to(() => const MapsView());
+            },
+          ),
         ],
       ),
     );
@@ -153,6 +167,71 @@ class SettingView extends GetView<SettingController> {
       title: Text(title),
       trailing: const Icon(Icons.arrow_forward_ios, color: Colors.grey),
       onTap: onTap,
+    );
+  }
+
+  /// Dialog untuk memutar musik dari URL
+  void _showMusicDialog(BuildContext context) {
+    final TextEditingController urlController = TextEditingController();
+    final AudioPlayer audioPlayer = AudioPlayer();
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Play Ur Music'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: urlController,
+                decoration: const InputDecoration(
+                  hintText: 'Enter music URL',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              const SizedBox(height: 10),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  ElevatedButton(
+                    onPressed: () async {
+                      String url = urlController.text.trim();
+                      if (url.isNotEmpty) {
+                        await audioPlayer.play(UrlSource(url)); // Mulai memutar musik
+                      } else {
+                        Get.snackbar('Error', 'Please enter a valid URL');
+                      }
+                    },
+                    child: const Text('Play'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () async {
+                      await audioPlayer.pause(); // Pause musik
+                    },
+                    child: const Text('Pause'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () async {
+                      await audioPlayer.stop(); // Stop musik
+                    },
+                    child: const Text('Stop'),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                audioPlayer.dispose(); // Bersihkan resource player saat dialog ditutup
+              },
+              child: const Text('Close'),
+            ),
+          ],
+        );
+      },
     );
   }
 }
