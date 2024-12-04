@@ -38,6 +38,10 @@ class KameraView extends GetView<KameraController> {
               ),
               const SizedBox(height: 20),
               ElevatedButton(
+                onPressed: () => controller.pickImage(ImageSource.gallery),
+                child: const Text('Pick Image from Camera'),
+              ),
+               ElevatedButton(
                 onPressed: () => controller.pickImage(ImageSource.camera),
                 child: const Text('Pick Image from Camera'),
               ),
@@ -46,49 +50,7 @@ class KameraView extends GetView<KameraController> {
               const Divider(
                 color: Colors.grey,
               ),
-              SizedBox(
-                height: Get.height / 2.32,
-                width: Get.width * 0.7,
-                child: Obx(() {
-                  if (controller.selectedVideoPath.value.isNotEmpty) {
-                    return Card(
-                      child: Column(
-                        children: [
-                          AspectRatio(
-                            aspectRatio: 1,
-                            child:
-                                VideoPlayer(controller.videoPlayerController!),
-                          ),
-                          VideoProgressIndicator(
-                            controller.videoPlayerController!,
-                            allowScrubbing: true,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              IconButton(
-                                icon: Icon(
-                                  controller.isVideoPlaying.isTrue
-                                      ? Icons.play_arrow
-                                      : Icons.pause,
-                                ),
-                                onPressed: controller.togglePlayPause,
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    );
-                  } else {
-                    return const Text('No video selected');
-                  }
-                }),
-              ),
-              ElevatedButton(
-                onPressed: () => controller.pickVideo(ImageSource.camera),
-                child: const Text('Pick Video from Camera'),
-              ),
-            
+           
             ],
           ),
         ),

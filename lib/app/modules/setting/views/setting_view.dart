@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:audioplayers/audioplayers.dart'; // Paket untuk pemutar audio
 import 'package:fund2me1/app/modules/maps/controllers/maps_controller.dart';
 import 'package:fund2me1/app/modules/maps/views/maps_view.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../controllers/setting_controller.dart';
 import 'package:fund2me1/app/modules/my_address/controllers/my_address_controller.dart'; // Import controller MyAddress
@@ -60,20 +63,25 @@ class SettingView extends GetView<SettingController> {
     );
   }
 
-  Widget buildProfileSection() {
-    return Center(
-      child: Column(
-        children: [
-          Stack(
-            children: [
-              const CircleAvatar(
+   Widget buildProfileSection() {
+    return Column(
+      children: [
+        Stack(
+          children: [
+            Obx(() {
+              return CircleAvatar(
                 radius: 100,
-                backgroundImage: AssetImage(
-                    "assets/img/hilma.png"), // Replace with actual image URL
-              ),
-              Positioned(
-                bottom: 0,
-                right: 0,
+                backgroundImage: controller.profileImagePath.value.isEmpty
+                    ? const AssetImage('assets/img/hilma.png')
+                        as ImageProvider
+                    : FileImage(File(controller.profileImagePath.value)),
+              );
+            }),
+            Positioned(
+              bottom: 0,
+              right: 0,
+              child: InkWell(
+                onTap: () => _showImagePickerOptions(),
                 child: Container(
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -82,34 +90,71 @@ class SettingView extends GetView<SettingController> {
                   padding: const EdgeInsets.all(4.0),
                   child: const Icon(
                     Icons.camera_alt,
-                    color: Color(0xFF692729), // Deep brown icon color
+                    color: Color(0xFF692729), // Warna coklat
                     size: 20,
                   ),
                 ),
               ),
-            ],
-          ),
-          const SizedBox(height: 10),
-          const Text(
-            'Verma Aldit D.',
-            style: TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.bold,
-              color: Colors.black87,
             ),
+          ],
+        ),
+        const SizedBox(height: 10),
+        const Text(
+          'Verma Aldit D.',
+          style: TextStyle(
+            fontSize: 22,
+            fontWeight: FontWeight.bold,
+            color: Colors.black87,
           ),
-          const SizedBox(height: 5),
-          const Text(
-            'PenggunaSekitar@gmail.com',
-            style: TextStyle(
-              fontSize: 16,
-              color: Colors.grey,
+        ),
+        const SizedBox(height: 5),
+        const Text(
+          'PenggunaSekitar@gmail.com',
+          style: TextStyle(
+            fontSize: 16,
+            color: Colors.grey,
+          ),
+        ),
+      ],
+    );
+  }
+
+  void _showImagePickerOptions() {
+    Get.bottomSheet(
+      Container(
+        padding: const EdgeInsets.all(20),
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
+          ),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ListTile(
+              leading: const Icon(Icons.photo_library),
+              title: const Text("Pick from Gallery"),
+              onTap: () {
+                Get.back();
+                controller.pickImage(ImageSource.gallery);
+              },
             ),
-          ),
-        ],
+            ListTile(
+              leading: const Icon(Icons.camera_alt),
+              title: const Text("Take a Photo"),
+              onTap: () {
+                Get.back();
+                controller.pickImage(ImageSource.camera);
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
+}
 
   Widget buildOptionsList() {
     return Expanded(
@@ -234,4 +279,4 @@ class SettingView extends GetView<SettingController> {
       },
     );
   }
-}
+
