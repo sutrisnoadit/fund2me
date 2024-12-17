@@ -17,6 +17,7 @@ abstract class Routes {
   static const KAMERA = _Paths.KAMERA;
   static const MICROPHONE = _Paths.MICROPHONE;
   static const MAPS = _Paths.MAPS;
+  static const CONNECTION = _Paths.CONNECTION;
 }
 
 abstract class _Paths {
@@ -35,4 +36,5 @@ abstract class _Paths {
   static const KAMERA = '/kamera';
   static const MICROPHONE = '/microphone';
   static const MAPS = '/maps';
+  static const CONNECTION = '/connection';
 }

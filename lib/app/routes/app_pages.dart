@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../modules/connection/bindings/connection_binding.dart';
+import '../modules/connection/views/connection_view.dart';
 import '../modules/dashboard/bindings/dashboard_binding.dart';
 import '../modules/dashboard/views/dashboard_view.dart';
 import '../modules/donation/bindings/donation_binding.dart';
@@ -98,6 +100,11 @@ class AppPages {
       name: _Paths.MAPS,
       page: () => const MapsView(),
       binding: MapsBinding(),
+    ),
+    GetPage(
+      name: _Paths.CONNECTION,
+      page: () => const NoConnectionView(),
+      binding: ConnectionBinding(),
     ),
   ];
 }
